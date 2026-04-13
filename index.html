@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="description" content="PaluScan - AI-powered malaria detection from blood smear images">
+  <title>PaluScan | AI Malaria Detection System</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="header">
+    <div class="container header-content">
+      <div class="logo-area">
+        <div class="logo" id="logoContainer">
+          <img src="images/logo.jpeg" alt="PaluScan" height="50">
+        </div>
+        <p class="tagline">AI-Powered Malaria Detection System</p>
+      </div>
+      <div class="mosquito-badge">
+        <span class="mosquito-icon">🦟</span>
+        <span>Zero Malaria Starts Here</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="main-grid">
+      <div class="left-column">
+        <div class="upload-card">
+          <div class="upload-area" id="uploadArea">
+            <div class="upload-icon">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/>
+                <circle cx="12" cy="13" r="3"/>
+                <path d="M12 10v6M9 13h6"/>
+              </svg>
+            </div>
+            <p class="upload-title">Upload Blood Smear Image</p>
+            <p class="upload-subtitle">Click or drag & drop</p>
+            <small class="upload-hint">Supports JPG, PNG (microscopic images)</small>
+            <input type="file" id="imageInput" accept="image/jpeg, image/png, image/jpg" hidden>
+          </div>
+
+          <div class="preview-container" id="previewContainer" style="display: none;">
+            <img id="previewImage" alt="Blood smear preview">
+            <button id="removeImageBtn" class="remove-btn">✖ Remove Image</button>
+          </div>
+
+          <button id="analyzeBtn" class="analyze-btn" disabled>
+            <span class="btn-icon">🔬</span>
+            <span class="btn-text">Analyze with AI</span>
+          </button>
+        </div>
+
+        <!-- Results Section -->
+        <div id="resultCard" style="display: none;">
+          <div class="result-card">
+            <h3 class="result-title">🧬 Diagnosis Result</h3>
+            <div class="result-status" id="resultStatus">—</div>
+            
+            <div class="confidence-section">
+              <div class="confidence-header">
+                <span>Confidence Score</span>
+                <span id="confidencePercent" class="confidence-value">0%</span>
+              </div>
+              <div class="progress-bar-bg">
+                <div class="progress-fill" id="confidenceFill" style="width: 0%;"></div>
+              </div>
+            </div>
+            
+            <div id="parasiteInfo" class="parasite-info"></div>
+            <div class="disclaimer">⚠️ For clinical decision support – final diagnosis by healthcare professional required</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="right-column">
+        <div class="nurse-section">
+          <div class="image-container" id="nurseImageContainer">
+            <img src="images/nurse-laptop.jpg" alt="Healthcare professional using PaluScan" id="nurseImage" onerror="this.onerror=null; this.src='https://placehold.co/600x400/0b2b3b/white?text=Nurse+Image+Placeholder\nDownload+real+image+from+instructions'">
+            <div class="image-caption">
+              <p>👩‍⚕️ Healthcare professional reviewing AI diagnosis</p>
+              <small>Real-time malaria detection in action</small>
+            </div>
+          </div>
+          
+          <div class="mosquito-fact">
+            <div class="fact-icon">🦟</div>
+            <div class="fact-content">
+              <strong>Did you know?</strong>
+              <p>One infected mosquito can transmit malaria to multiple people. Early detection saves lives.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="prevention-section">
+      <div class="prevention-title">
+        <span class="title-icon">🛡️</span>
+        <h2>Protect Yourself from Malaria</h2>
+      </div>
+      
+      <div class="prevention-grid">
+        <div class="prevention-card">
+          <div class="prevention-icon">🛌🦟</div>
+          <h4>Sleep Under Mosquito Nets</h4>
+          <p>Use insecticide-treated nets (ITNs) every night, even during dry seasons. Properly tuck nets under mattress.</p>
+        </div>
+        
+        <div class="prevention-card">
+          <div class="prevention-icon">🏠💨</div>
+          <h4>Indoor Residual Spraying</h4>
+          <p>Apply WHO-approved insecticides on walls & ceilings where mosquitoes rest. Effective for 3-6 months.</p>
+        </div>
+        
+        <div class="prevention-card">
+          <div class="prevention-icon">🧴🦵</div>
+          <h4>Use Mosquito Repellent</h4>
+          <p>Apply DEET, picaridin, or oil of lemon eucalyptus on exposed skin, especially at dusk and dawn.</p>
+        </div>
+        
+        <div class="prevention-card">
+          <div class="prevention-icon">🌿🚫</div>
+          <h4>Eliminate Standing Water</h4>
+          <p>Empty flower pots, tires, and containers weekly. Mosquitoes breed in stagnant water within 7-10 days.</p>
+        </div>
+        
+        <div class="prevention-card">
+          <div class="prevention-icon">👕🧥</div>
+          <h4>Wear Protective Clothing</h4>
+          <p>Long sleeves, pants, and socks during peak mosquito hours (sunset to sunrise). Light colors attract fewer mosquitoes.</p>
+        </div>
+        
+        <div class="prevention-card">
+          <div class="prevention-icon">💊🏥</div>
+          <h4>Seek Early Treatment</h4>
+          <p>Fever + chills? Get tested immediately. Early diagnosis with PaluScan saves lives.</p>
+        </div>
+      </div>
+      
+      <div class="who-recommendation">
+        <span class="who-icon">🌍</span>
+        <span><strong>WHO Recommendation:</strong> Combine multiple prevention methods for best protection. Early diagnosis and treatment are critical.</span>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <p>🚀 PaluScan – Reducing diagnostic error, accelerating malaria elimination</p>
+    <div class="footer-disclaimer">AI system v1.0 | For healthcare professionals | Always confirm with microscopy</div>
+    <div class="footer-credits">© 2026 PaluScan | AI for Global Health</div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
